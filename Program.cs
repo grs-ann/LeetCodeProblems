@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            ProblemExecutor.GroupAnagrams(new string[] {"eat", "tea", "tan", "ate", "nat", "bat"});
+            ProblemExecutor.TopKFrequent(new int[] { 3, 0, 1, 0 }, 1);
 
             Console.ReadKey();
         }

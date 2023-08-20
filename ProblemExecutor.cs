@@ -117,5 +117,25 @@ namespace LeetCodeProblems
 
             return new string(characters);
         }
+
+        /// <summary>
+        /// 4. Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+        /// </summary>
+        internal static int[] TopKFrequent(int[] nums, int k)
+        {
+            Dictionary<int, int> countByNums = new();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (countByNums.ContainsKey(nums[i]))
+                {
+                    countByNums[nums[i]]++;
+                    continue;
+                }
+                countByNums.Add(nums[i], 1);
+            }
+
+            return countByNums.OrderByDescending(n => n.Value).Take(k).Select(n => n.Key).ToArray();
+        }
     }
 }
