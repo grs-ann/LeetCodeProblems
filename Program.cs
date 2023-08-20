@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            ProblemExecutor.IsAnagram("rat", "car");
+            ProblemExecutor.GroupAnagrams(new string[] {"eat", "tea", "tan", "ate", "nat", "bat"});
 
             Console.ReadKey();
         }

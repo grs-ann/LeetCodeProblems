@@ -80,5 +80,42 @@ namespace LeetCodeProblems
 
             return true;
         }
+
+        /// <summary>
+        /// 3. Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+        /// An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically 
+        /// using all the original letters exactly once.
+        /// </summary>
+        internal static IList<IList<string>> GroupAnagrams(string[] strs)
+        {
+            // Для группировки анаграмм используем словарь, в котором в качестве ключа 
+            // будем использовать отсортированную строку, полученную из слова.
+            // Таким образом, слова-анаграммы всегда будут отсортированы в одинаковый ключ.
+            Dictionary<string, List<string>> anagramGroups = new();
+             
+            for (int i = 0; i < strs.Length; i++)
+            {
+                string sortedKey = GetOrderedKey(strs[i]);
+
+                if (anagramGroups.ContainsKey(sortedKey))
+                {
+                    anagramGroups[sortedKey].Add(strs[i]);
+                    continue;
+                }
+
+                anagramGroups.Add(sortedKey, new List<string>() { strs[i] });
+            }
+
+            return new List<IList<string>>(anagramGroups.Values);
+        }
+
+        private static string GetOrderedKey(string inputString)
+        {
+            char[] characters = inputString.ToCharArray();
+
+            Array.Sort(characters);
+
+            return new string(characters);
+        }
     }
 }
